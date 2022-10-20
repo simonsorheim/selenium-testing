@@ -1,2 +1,2 @@
-# selnium-testing
+# selenium-testing
 Simple Selenium testing

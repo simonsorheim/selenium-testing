@@ -2,10 +2,9 @@ package com.github.simonsorheim;
 
 import static org.junit.Assert.assertEquals;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  * SeleniumTest
@@ -17,9 +16,15 @@ public class SeleniumTest {
 
 	@Test
 	public void seleniumTest() {
-		ChromeOptions options = new ChromeOptions();
-		options.setHeadless(true);
-		WebDriver webDriver = new ChromeDriver(options);
+
+		// Use manager to handle installing drivers
+		WebDriverManager manager = WebDriverManager
+				.chromedriver()
+				.browserInDocker();
+
+		// Create manager
+		WebDriver webDriver = manager.create();
+
 		webDriver.get("https://dev.mediaconnect.no/");
 		String title = webDriver.getTitle();
 		assertEquals("Mediaconnect AS", title);
